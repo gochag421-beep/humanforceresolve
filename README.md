@@ -53,6 +53,38 @@ python3 -m http.server 12000
 
 A local server is recommended because `script.js` is an ES module.
 
+## Candidate registration form
+
+`#register` holds a validated form (name, phone, email, role, area, experience,
+message, consent). Submissions are POSTed to FormSubmit, which relays them to
+`contact@humanforcesolutions.com`.
+
+### One-time activation (required)
+
+1. Submit the form once on the live site.
+2. FormSubmit emails `contact@humanforcesolutions.com` an **Activate Form** link.
+3. Click it. Every submission after that lands in the inbox.
+
+Until step 3 the relay replies `HTTP 200` with `{"success":"false"}`. The form
+checks that body rather than the status code, so it will never claim a delivery
+that did not happen: it falls back to opening the visitor's mail client with the
+answers pre-filled and keeps what was typed.
+
+To use a different provider, change `FORM_ENDPOINT` in `form.js` to a
+Formspree/Web3Forms URL.
+
+### Behaviour
+
+| Situation | What happens |
+|---|---|
+| Missing or invalid field | Inline message under the field, focus jumps to the first problem |
+| Relay confirms success | Green confirmation, form resets |
+| Relay refuses or is unreachable | Amber notice, mail client opens pre-filled, answers are kept |
+| Hidden honeypot field filled | Silently accepted-looking response, no network call |
+
+`form.js` is a plain script loaded with `defer` and kept out of `script.js`, so
+the form still works when WebGL is unavailable.
+
 ## Contact
 
 - +30 2107499385

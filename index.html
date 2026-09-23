@@ -20,6 +20,7 @@
     <a href="#products">Λύσεις</a>
     <a href="#jobs">Θέσεις εργασίας</a>
     <a href="#how">Πώς λειτουργεί</a>
+    <a href="#register">Καταχώριση</a>
     <a class="cta" href="#employers">Ψάχνω προσωπικό</a>
   </nav>
 </header>
@@ -118,8 +119,96 @@
   <section id="jobs">
     <p class="eyebrow">ΓΙΑ ΥΠΟΨΗΦΙΟΥΣ</p>
     <h2>Η επόμενη κίνηση είναι δική σου.</h2>
-    <p>Βρες μια θέση που ταιριάζει στη διαδρομή σου ή άφησέ μας τα στοιχεία σου για μελλοντικές ευκαιρίες.</p>
-    <div class="empty">Δεν υπάρχουν ακόμη δημοσιευμένες αγγελίες.<br><strong>Μπες στη βάση υποψηφίων για τις επόμενες θέσεις.</strong></div>
+    <p>Βρες μια θέση που ταιριάζει στη διαδρομή σου ή άφησέ μας τα στοιχεία σου. Μόλις ολοκληρώσεις την καταχώριση, η αίτηση φτάνει απευθείας στο email της ομάδας μας.</p>
+    <div class="empty">Δεν υπάρχουν ακόμη δημοσιευμένες αγγελίες.<br><strong>Συμπλήρωσε τη φόρμα παρακάτω για τις επόμενες θέσεις.</strong></div>
+  </section>
+
+  <!-- ======================= REGISTRATION FORM ======================= -->
+  <section id="register">
+    <p class="eyebrow">ΚΑΤΑΧΩΡΙΣΗ ΥΠΟΨΗΦΙΟΥ</p>
+    <h2>Μπες στη βάση υποψηφίων.</h2>
+    <p>Συμπλήρωσε τα στοιχεία σου και η αίτηση έρχεται <strong>απευθείας στο email μας</strong>. Θα επικοινωνήσουμε μαζί σου για τις θέσεις που ταιριάζουν στο προφίλ σου.</p>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <div class="field">
+        <label for="f-name">Ονοματεπώνυμο <span aria-hidden="true">*</span></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="π.χ. Γιώργος Παπαδόπουλος">
+        <p class="err" data-for="f-name" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-phone">Τηλέφωνο <span aria-hidden="true">*</span></label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="π.χ. 69xxxxxxxx">
+        <p class="err" data-for="f-phone" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-email">Email <span aria-hidden="true">*</span></label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
+        <p class="err" data-for="f-email" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-role">Θέση που σε ενδιαφέρει <span aria-hidden="true">*</span></label>
+        <select id="f-role" name="role" required>
+          <option value="">— Διάλεξε —</option>
+          <option>Οδηγός δικύκλου (delivery)</option>
+          <option>Διανομές / courier</option>
+          <option>Οδηγός van / επαγγελματικού οχήματος</option>
+          <option>Αποθήκη / logistics</option>
+          <option>Κατασκευές (construction)</option>
+          <option>Βιομηχανία (manufacturing)</option>
+          <option>Εστίαση / hospitality</option>
+          <option>Γενικά καθήκοντα</option>
+          <option>Άλλο</option>
+        </select>
+        <p class="err" data-for="f-role" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for="f-city">Περιοχή</label>
+        <input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="π.χ. Αθήνα">
+      </div>
+
+      <div class="field">
+        <label for="f-exp">Εμπειρία</label>
+        <select id="f-exp" name="experience">
+          <option value="">— Διάλεξε —</option>
+          <option>Χωρίς εμπειρία</option>
+          <option>Έως 1 χρόνο</option>
+          <option>1–3 χρόνια</option>
+          <option>3–5 χρόνια</option>
+          <option>Πάνω από 5 χρόνια</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="f-msg">Μήνυμα / σχόλια</label>
+        <textarea id="f-msg" name="message" rows="4" placeholder="Διαθεσιμότητα, δίπλωμα, βάρδιες, οτιδήποτε θέλεις να ξέρουμε."></textarea>
+      </div>
+
+      <!-- honeypot: hidden from humans, catches naive bots -->
+      <div class="hp" aria-hidden="true">
+        <label for="f-company">Company</label>
+        <input id="f-company" name="_company" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <label class="consent full">
+        <input id="f-consent" name="consent" type="checkbox" required>
+        <span>Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου για σκοπούς στελέχωσης. <span aria-hidden="true">*</span></span>
+      </label>
+      <p class="err full" data-for="f-consent" hidden></p>
+
+      <div class="form-actions full">
+        <button class="btn submit" id="submitBtn" type="submit">
+          <span class="btn-text">Αποστολή καταχώρισης</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+        <p class="form-note">Η αίτηση αποστέλλεται στο <strong>contact@humanforcesolutions.com</strong>.</p>
+      </div>
+
+      <p class="form-status full" id="formStatus" role="status" aria-live="polite" hidden></p>
+    </form>
   </section>
 
   <section id="employers" class="employer">
@@ -138,5 +227,6 @@
 </footer>
 
 <script type="module" src="script.js"></script>
+<script src="form.js" defer></script>
 </body>
 </html>

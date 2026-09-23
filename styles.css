@@ -411,6 +411,146 @@ footer {
 }
 footer div:first-child { color: var(--ink); font-weight: 600; letter-spacing: .14em; }
 
+/* --------------------------- registration form -------------------------- */
+.reg-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  backdrop-filter: blur(10px);
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field.full, .form-actions.full, .form-status.full, .consent.full { grid-column: 1 / -1; }
+
+.field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ink);
+}
+.field label span[aria-hidden] { color: var(--gold); }
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 13px 15px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: rgba(4, 6, 12, .62);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 12px;
+  transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+.field textarea { resize: vertical; min-height: 108px; }
+
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+                    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 42px;
+}
+.field select option { background: #0b0e17; color: var(--ink); }
+
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(154, 162, 182, .72); }
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover { border-color: rgba(255, 255, 255, .26); }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(227, 163, 60, .85);
+  background: rgba(8, 11, 20, .85);
+  box-shadow: 0 0 0 3px rgba(227, 163, 60, .20);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-color: rgba(255, 110, 199, .9);
+  box-shadow: 0 0 0 3px rgba(255, 110, 199, .16);
+}
+
+.err { margin: 0; font-size: 12.8px; color: var(--pink); }
+
+/* honeypot: off-screen, never reachable by keyboard */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.consent input {
+  width: 19px;
+  height: 19px;
+  flex: none;
+  margin-top: 2px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.form-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.btn.submit {
+  position: relative;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn.submit:disabled { cursor: progress; opacity: .82; transform: none; box-shadow: none; }
+.btn.submit:focus-visible { outline: 3px solid rgba(77, 226, 255, .6); outline-offset: 3px; }
+
+.spinner {
+  display: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(29, 20, 3, .35);
+  border-top-color: #1d1403;
+  animation: rotate .7s linear infinite;
+}
+.btn.submit.busy .spinner { display: inline-block; }
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.form-note { margin: 0; font-size: 13px; color: var(--muted); }
+.form-note strong { color: var(--gold-lt); font-weight: 600; }
+
+.form-status {
+  margin: 0;
+  padding: 14px 17px;
+  border-radius: 12px;
+  font-size: 14.5px;
+  border: 1px solid var(--line);
+  background: var(--glass);
+  color: var(--ink);
+}
+.form-status a { color: var(--gold-lt); }
+.form-status.ok   { border-color: rgba(182, 255, 92, .5);  background: rgba(182, 255, 92, .10); }
+.form-status.warn { border-color: rgba(227, 163, 60, .55); background: rgba(227, 163, 60, .12); }
+.form-status.error { border-color: rgba(255, 110, 199, .55); background: rgba(255, 110, 199, .12); }
+.form-status.info { border-color: rgba(77, 226, 255, .45); background: rgba(77, 226, 255, .10); }
+
 /* ------------------------------ responsive ------------------------------ */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
