@@ -1,35 +1,57 @@
 # Human Force Solutions Group
 
-Static website reconstruction based on the ChatGPT Site project **human-force-solutions**.
+Static website for **Human Force Solutions** — an all-in-one staffing agency.
+Rebuilt from the ChatGPT Site project `human-force-solutions`.
 
-## Hero: interactive 3D iridescent sphere
+## Interactive 3D hero
 
-The hero renders a liquid-metal sphere on a WebGL canvas (`#scene`). It is drawn as a
-heavily subdivided plane displaced by an FBM noise field, so the surface continuously
-changes shape. A pointer-driven bulge is added to the displacement, and the fragment
-stage samples a small procedural studio environment along the reflection vector to get
-the iridescent, light-reflecting look. Moving the cursor moves both the bulge and the
-camera-facing rotation.
+The hero renders a real-time WebGL scene with two switchable subjects:
 
-Implementation notes:
+- **Embossed gold coin** — lathe-free construction from a cylinder plus beveled rims,
+  gear emblem, spokes and stud ring. Both faces carry a procedurally drawn
+  **neon circuit-board** canvas texture used as an emissive map.
+- **Next-gen controller** — shell, grips, analog sticks with glowing wells, d-pad,
+  colour-coded face buttons and a status bar, all with neon emissive accents.
 
-- `three.js` is loaded as an ES module from jsDelivr. The whole scene is a single
-  `ShaderMaterial`; no textures or external assets are used.
-- Vertex positions outside the unit disc are collapsed onto its rim (`clampDisc`), which
-  keeps the silhouette perfectly round while the interior stays liquid.
-- If WebGL or the CDN module is unavailable, `useFallback()` swaps in a pure-CSS
-  conic-gradient orb so the page never renders an empty hero.
-- The `prefers-reduced-motion` media query disables ambient animation.
+Both subjects float and rotate a full 360° on a pivot group. The scene uses a
+`PMREMGenerator` studio environment (coloured area lights around a dark dome) so the
+gold has something real to reflect, with ACES tone mapping applied.
+
+### Controls
+
+| Input | Action |
+|---|---|
+| Drag (mouse or touch) | Rotate the model, with momentum on release |
+| Button "Δες τον controller" / "Δες το χρυσό νόμισμα" | Switch between coin and controller |
+| Button "Περιστροφή: Ναι/Όχι" | Toggle the idle auto-rotation |
+| Arrow keys | Rotate in 15° steps (canvas is focusable) |
+| Space / Enter | Switch subject |
+
+Hovering the canvas without dragging adds a gentle parallax, so the model feels alive
+even before the user interacts. `prefers-reduced-motion` disables drift, bob, glow
+pulsing, auto-rotation and the ambient background animation.
+
+### Resilience
+
+If WebGL or the three.js CDN module is unavailable, `useFallback()` swaps in a
+pure-CSS gradient coin so the hero is never empty. The canvas is kept strictly square
+(`aspect-ratio: 1/1` plus a locked camera aspect) at every breakpoint so the sphere
+never stretches on mobile.
+
+## Content sections
+
+Hero, quote from Nicko Anta (Internal Affairs), six service cards (Construction,
+Manufacturing, Professional Drivers, Logistics Staffing, General Workers, Hospitality
+Workers), "Rise to the top / Increase Productivity", candidate pool, and employer CTA.
 
 ## Run locally
 
 ```bash
 python3 -m http.server 12000
-# then open http://127.0.0.1:12000/
+# open http://127.0.0.1:12000/
 ```
 
-Opening `index.html` directly from the filesystem also works, but a local server is
-recommended because the script is an ES module.
+A local server is recommended because `script.js` is an ES module.
 
 ## Contact
 

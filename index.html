@@ -3,19 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Human Force Solutions Group — Οι άνθρωποι κινούν τα πάντα</title>
-<meta name="description" content="Στελέχωση για delivery, διανομές και μεταφορές. Συνδέουμε οδηγούς με επιχειρήσεις που προχωρούν.">
-<meta name="theme-color" content="#05060a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234de2ff'/%3E%3Cstop offset='.5' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%23ff6ec7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
+<title>Human Force Solutions Group — Your Ultimate Workforce Partner</title>
+<meta name="description" content="Human Force Solutions — all-in-one staffing. Construction, manufacturing, professional drivers, logistics, general and hospitality workers.">
+<meta name="theme-color" content="#07080d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe79a'/%3E%3Cstop offset='.5' stop-color='%23e3a33c'/%3E%3Cstop offset='1' stop-color='%234de2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="aurora" aria-hidden="true"></div>
+<a class="skip" href="#services">Μετάβαση στο περιεχόμενο</a>
 
 <header>
   <div class="brand"><span class="mark">HF</span><span class="brand-name">HUMAN FORCE SOLUTIONS GROUP</span></div>
   <nav>
     <a href="#services">Υπηρεσίες</a>
+    <a href="#products">Λύσεις</a>
     <a href="#jobs">Θέσεις εργασίας</a>
     <a href="#how">Πώς λειτουργεί</a>
     <a class="cta" href="#employers">Ψάχνω προσωπικό</a>
@@ -23,51 +25,101 @@
 </header>
 
 <main>
+  <!-- ============================ HERO ============================ -->
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">ΟΙ ΑΝΘΡΩΠΟΙ ΚΙΝΟΥΝ ΤΑ ΠΑΝΤΑ</p>
-      <h1>Οι σωστοί άνθρωποι.<br><em>Στη σωστή διαδρομή.</em></h1>
-      <p class="lede">Συνδέουμε οδηγούς με επιχειρήσεις που προχωρούν. Στελέχωση για delivery, διανομές και μεταφορές. Με ανθρώπους στο επίκεντρο.</p>
+      <p class="eyebrow">JUST SAY THE WORD, WE CAN DO IT ALL</p>
+      <h1>Your Ultimate<br><em>Workforce Partner.</em></h1>
+      <p class="lede">At Human Force Solutions, we're not just a staffing agency — we're your all-in-one solution. From finding top talent to streamlining HR processes, we revolutionize your workforce needs.</p>
       <div class="actions">
-        <a class="btn" href="#jobs">Βρες τη θέση σου</a>
-        <a class="btn ghost" href="#employers">Βρες την ομάδα σου</a>
+        <a class="btn" href="#employers">Ζήτησε προσωπικό</a>
+        <a class="btn ghost" href="#jobs">Βρες τη θέση σου</a>
       </div>
+      <p class="hero-note" id="controlHint">
+        <span class="pulse" aria-hidden="true"></span>
+        Σύρε για να περιστρέψεις · πάτησε το κουμπί για χρυσό νόμισμα / controller
+      </p>
     </div>
 
     <div class="stage" id="stage">
-      <canvas id="scene" aria-label="Διαδραστική ιριδίζουσα 3D σφαίρα με υγρή υφή που αντιδρά στην κίνηση του κέρσορα"></canvas>
-      <div class="stage-fallback" id="stageFallback" hidden><div class="css-orb"></div></div>
-      <p class="stage-hint">Κούνησε τον κέρσορα — η σφαίρα αντιδρά</p>
+      <canvas id="scene" role="img" aria-label="Διαδραστική 3D σκηνή: ανάγλυφο χρυσό νόμισμα με neon κυκλώματα και χειριστήριο επόμενης γενιάς, που αιωρούνται και περιστρέφονται 360 μοίρες"></canvas>
+      <div class="stage-fallback" id="stageFallback" hidden><div class="css-coin"></div></div>
+      <div class="stage-ui" id="stageUI" hidden>
+        <button class="pill" id="switchBtn" type="button" aria-pressed="false">
+          <span id="switchLabel">Δες τον controller</span>
+        </button>
+        <button class="pill ghost" id="autoBtn" type="button" aria-pressed="true">Περιστροφή: Ναι</button>
+      </div>
       <small class="tagline">PEOPLE. PURPOSE. PROGRESS.</small>
     </div>
   </section>
 
+  <!-- ============================ QUOTE ============================ -->
+  <section class="quote-band">
+    <blockquote>
+      <p>“At Human Force Solutions, we’re not just a staffing agency; we’re your all-in-one solution. From finding top talent to streamlining HR processes, we revolutionize your workforce needs. Experience unmatched efficiency and excellence with HFS — the future of staffing.”</p>
+      <footer><span class="avatar" aria-hidden="true">NA</span><span><strong>Nicko Anta</strong><small>Internal Affairs</small></span></footer>
+    </blockquote>
+  </section>
+
+  <!-- ====================== SERVICES (main) ====================== -->
   <section id="services">
-    <p class="eyebrow">01 / ΟΙ ΥΠΗΡΕΣΙΕΣ ΜΑΣ</p>
-    <h2>Η διαδρομή αλλάζει. Ο άνθρωπος μετράει.</h2>
-    <p>Από το τελευταίο χιλιόμετρο μέχρι την επόμενη μεγάλη διαδρομή, φέρνουμε κοντά τους κατάλληλους ανθρώπους.</p>
+    <p class="eyebrow">OUR SERVICES</p>
+    <h2>Just Say the Word, We Can Do it all!</h2>
+    <p>Ένα ολοκληρωμένο φάσμα στελέχωσης, προσαρμοσμένο στις ανάγκες κάθε κλάδου.</p>
     <div class="grid">
-      <article><b>01</b><h3>Delivery</h3><p>Οδηγοί δικύκλου για εστίαση, καταστήματα και υπηρεσίες διανομής.</p></article>
-      <article><b>02</b><h3>Διανομές &amp; courier</h3><p>Προσωπικό για παραδόσεις δεμάτων και καθημερινά δρομολόγια.</p></article>
-      <article><b>03</b><h3>Οδηγοί μεταφορών</h3><p>Οδηγοί για van και επαγγελματικά οχήματα, ανάλογα με τις ανάγκες σας.</p></article>
+      <article>
+        <b>01</b><h3>Construction</h3>
+        <p>We offer a wide range of staffing solutions, including skilled and unskilled labor, supervisors, project managers, and administrative staff. Our staff are highly trained and experienced, and they have the necessary skills and expertise to help you achieve your construction goals.</p>
+      </article>
+      <article>
+        <b>02</b><h3>Manufacturing</h3>
+        <p>Keep your production lines running smoothly with our manufacturing staffing services. We supply skilled labor, supervisors, and managers to ensure efficient operations in the manufacturing sector, helping you meet your production goals with precision.</p>
+      </article>
+      <article>
+        <b>03</b><h3>Professional Drivers</h3>
+        <p>Our professional drivers are here to meet your transportation needs. Whether it's goods, passengers, or equipment, our experienced team is at your service. We prioritize safety and reliability, rigorously screening and vetting all our drivers to ensure top-notch standards.</p>
+      </article>
     </div>
   </section>
 
-  <section id="jobs">
-    <p class="eyebrow">02 / ΓΙΑ ΥΠΟΨΗΦΙΟΥΣ</p>
-    <h2>Η επόμενη κίνηση είναι δική σου.</h2>
-    <p>Βρες μια θέση που ταιριάζει στη διαδρομή σου ή άφησέ μας τα στοιχεία σου για μελλοντικές ευκαιρίες.</p>
-    <div class="empty">Δεν υπάρχουν ακόμη δημοσιευμένες αγγελίες.<br><strong>Μπες στη βάση υποψηφίων για τις επόμενες θέσεις.</strong></div>
+  <!-- ============ LOGISTICS / GENERAL / HOSPITALITY ============ -->
+  <section id="products">
+    <p class="eyebrow">INDUSTRIES WE POWER</p>
+    <h2>Οι κλάδοι που κρατάμε σε κίνηση.</h2>
+    <div class="grid">
+      <article>
+        <b>04</b><h3>Logistics Staffing</h3>
+        <p>Efficiency is the heartbeat of logistics, and at Human Force Solutions, we're your dedicated partner in staffing solutions for this vital industry. From adept warehouse managers to skilled drivers, we provide the professionals who ensure your supply chain runs like clockwork. With HFS, experience the fusion of efficiency and reliability that powers your logistics success.</p>
+      </article>
+      <article>
+        <b>05</b><h3>General Workers</h3>
+        <p>Discover a versatile workforce ready to meet your changing needs. From general labor to warehouse support and entry-level positions, we provide skilled professionals who drive your success. Experience the flexibility and efficiency of our staffing solutions. Partner with us to harness the power of a dynamic and adaptable workforce.</p>
+      </article>
+      <article>
+        <b>06</b><h3>Hospitality Workers</h3>
+        <p>Unlock exceptional guest experiences with our skilled hospitality workforce. From welcoming front-of-house professionals to efficient behind-the-scenes support, we provide the talent that elevates your establishment, ensuring memorable stays and events.</p>
+      </article>
+    </div>
   </section>
 
+  <!-- ====================== RISE TO THE TOP ====================== -->
   <section id="how">
-    <p class="eyebrow">03 / ΑΠΛΑ. ΑΝΘΡΩΠΙΝΑ.</p>
-    <h2>Τρεις στάσεις. Μια νέα αρχή.</h2>
+    <p class="eyebrow">RISE TO THE TOP</p>
+    <h2>Increase Productivity.</h2>
+    <p>Boost productivity with streamlined workflows, technology integration, and a culture of efficiency. Our solutions empower organizations to increase output and achieve success.</p>
     <div class="steps">
       <div><b>01</b><h3>Μας λες τι ψάχνεις.</h3><p>Συμπληρώνεις την αίτηση ως οδηγός ή τις ανάγκες της επιχείρησής σου.</p></div>
       <div><b>02</b><h3>Γνωριζόμαστε καλύτερα.</h3><p>Η ομάδα μας επικοινωνεί μαζί σου για εμπειρία, διαθεσιμότητα και απαιτήσεις.</p></div>
       <div><b>03</b><h3>Βρίσκουμε τη σωστή σύνδεση.</h3><p>Εξετάζουμε τις διαθέσιμες επιλογές και συζητάμε τα επόμενα βήματα.</p></div>
     </div>
+  </section>
+
+  <section id="jobs">
+    <p class="eyebrow">ΓΙΑ ΥΠΟΨΗΦΙΟΥΣ</p>
+    <h2>Η επόμενη κίνηση είναι δική σου.</h2>
+    <p>Βρες μια θέση που ταιριάζει στη διαδρομή σου ή άφησέ μας τα στοιχεία σου για μελλοντικές ευκαιρίες.</p>
+    <div class="empty">Δεν υπάρχουν ακόμη δημοσιευμένες αγγελίες.<br><strong>Μπες στη βάση υποψηφίων για τις επόμενες θέσεις.</strong></div>
   </section>
 
   <section id="employers" class="employer">
