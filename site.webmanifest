@@ -1,0 +1,28 @@
+{
+  "name": "HUMAN FORCE SOLUTIONS",
+  "short_name": "HUMAN FORCE",
+  "description": "Στελέχωση για delivery, διανομές, μεταφορές και βιομηχανία σε όλη την Ελλάδα.",
+  "lang": "el",
+  "start_url": "/humanforceresolve/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#163b31",
+  "icons": [
+    {
+      "src": "/humanforceresolve/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/humanforceresolve/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/humanforceresolve/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
