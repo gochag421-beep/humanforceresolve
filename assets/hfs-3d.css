@@ -2,7 +2,7 @@
    Layers on top of the compiled bundle. No image assets required. */
 
 /* ---------------------------------------------------------------- *
- * 1. Hero: the delivery scene (replaces the scooter image)
+ * 1. Hero: the delivery scene
  * ---------------------------------------------------------------- */
 .hero-visual .delivery-scene {
   position: absolute;
@@ -482,10 +482,6 @@ html:not(.hfs-3d) .story-copy-block { display: flex; }
   html.hfs-3d .story-copy-block.is-current { display: flex; }
 }
 
-@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
-  .story-stage { display: none; }
-}
-
 /* ---------------------------------------------------------------- *
  * 5. Accessibility
  * ---------------------------------------------------------------- */
@@ -519,4 +515,9 @@ html:not(.hfs-3d) .story-copy-block { display: flex; }
   .hero-visual .bottom-card {
     transform: none !important;
   }
+}
+
+/* Small screens never show the stage, reduced motion or not. */
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .story-stage { display: none !important; }
 }
