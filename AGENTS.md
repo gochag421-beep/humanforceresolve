@@ -58,4 +58,12 @@ Then drive it over CDP (Node's built-in `ws` + `fetch` against
 - `assets/index-<hash>.css` is referenced *by filename* from `index.html`; if you
   ever rename a hashed asset, update the HTML link too.
 - Prerendered pages for other routes live in their own directories
-  (`delivery/index.html`, `privacy/index.html`, …) and share the same bundle.
+  (`construction/index.html`, `privacy/index.html`, …) and share the same bundle.
+- Regenerating a prerendered page means: render the route in headless Chromium,
+  take `#root`'s `outerHTML` plus the live `#hfs-page-jsonld` payload, and splice
+  both into the static file while keeping the hand-written `<head>` meta.
+- The site carries no delivery/transport offering any more. Keep it that way:
+  `professional-drivers/` and `logistics-staffing/` are deleted, and the services
+  array in the bundle now holds only construction, manufacturing, general workers
+  and hospitality. `οδηγοί` survives only inside `εργοδηγοί` (construction
+  foremen), which is intentional.
