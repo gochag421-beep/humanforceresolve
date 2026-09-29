@@ -114,7 +114,7 @@
    * ------------------------------------------------------------ */
   function bind() {
     state.targets = [
-      { el: document.querySelector(".delivery-scene"), depth: 13, tilt: 5 },
+      { el: document.querySelector(".talent-scene"), depth: 13, tilt: 5 },
       { el: document.querySelector(".hero-visual .orbit-text"), depth: 7, tilt: 0 },
       { el: document.querySelector(".hero-visual .top-card"), depth: -20, tilt: 7 },
       { el: document.querySelector(".hero-visual .bottom-card"), depth: 24, tilt: -7 },
