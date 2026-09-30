@@ -11,7 +11,7 @@
   border-radius: 50%;
   transform:
     translate3d(var(--px, 0px), var(--py, 0px), 0)
-    rotate(-5deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    rotate(-5deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg));
   background:
     radial-gradient(120% 90% at 28% 18%, #fbfcf7 0%, #eaf0e6 46%, #d8e4c6 100%);
   overflow: hidden;

@@ -13,10 +13,31 @@
 
   var clamp = function (v, min, max) { return Math.min(max, Math.max(min, v)); };
 
-  var state = { targets: [], track: null, ring: null, scenes: [], copy: [], rail: [] };
+  var state = { targets: [], track: null, ring: null, scenes: [], panels: [], copy: [], rail: [], basePos: 0 };
   var pointer = { x: 0, y: 0, cx: 0, cy: 0 };
   var pointerActive = false;
   var looping = false;
+
+  /* ------------------------------------------------------------ *
+   * Continuous roll. Scroll sets the base position; the pointer adds
+   * a rolling offset, so moving the mouse scrubs the storyline.
+   * ------------------------------------------------------------ */
+  function updateRoll() {
+    var ring = state.ring;
+    if (!ring || !ring.isConnected || state.scenes.length < 2) return;
+
+    var span = state.scenes.length - 1;
+    var value = clamp(state.basePos + pointer.cx * 1.1, 0, span);
+    ring.style.setProperty("--active", value.toFixed(3));
+
+    for (var i = 0; i < state.scenes.length; i++) {
+      var distance = Math.abs(i - value);
+      var near = clamp(1 - distance, 0, 1);
+      state.scenes[i].style.opacity = (near * near).toFixed(3);
+      state.scenes[i].style.visibility = near > 0.03 ? "visible" : "hidden";
+      if (state.panels[i]) state.panels[i].style.display = near > 0.03 ? "flex" : "none";
+    }
+  }
 
   /* ------------------------------------------------------------ *
    * Pointer parallax (hero scene + storyline stage)
@@ -34,7 +55,12 @@
         t.el.style.setProperty("--rx", (6 - pointer.cy * t.tilt).toFixed(2) + "deg");
         t.el.style.setProperty("--ry", (pointer.cx * t.tilt).toFixed(2) + "deg");
       }
+      if (t.roll) {
+        t.el.style.setProperty("--rz", (pointer.cx * t.roll).toFixed(2) + "deg");
+      }
     }
+
+    updateRoll();
 
     if (Math.abs(pointer.x - pointer.cx) > 0.001 || Math.abs(pointer.y - pointer.cy) > 0.001) {
       requestAnimationFrame(frame);
@@ -79,23 +105,27 @@
     var rect = track.getBoundingClientRect();
     var span = rect.height - window.innerHeight;
     var raw = span > 0 ? clamp(-rect.top / span, 0, 1) : 0;
-    var pos = raw * state.scenes.length;
-    var index = clamp(Math.floor(pos), 0, state.scenes.length - 1);
+    var steps = state.scenes.length - 1;
+    var pos = raw * steps;
+    var index = clamp(Math.round(pos), 0, steps);
+
+    state.basePos = pos;
 
     if (index !== active) {
       active = index;
       var i;
-      for (i = 0; i < state.scenes.length; i++) {
-        state.scenes[i].classList.toggle("is-active", i === index);
-      }
       for (i = 0; i < state.copy.length; i++) {
         state.copy[i].classList.toggle("is-current", i === index);
       }
       for (i = 0; i < state.rail.length; i++) {
         state.rail[i].classList.toggle("is-on", i <= index);
       }
-      if (state.ring) state.ring.style.setProperty("--active", index);
+      for (i = 0; i < state.scenes.length; i++) {
+        state.scenes[i].classList.toggle("is-active", i === index);
+      }
     }
+
+    updateRoll();
   }
 
   var ticking = false;
@@ -114,7 +144,7 @@
    * ------------------------------------------------------------ */
   function bind() {
     state.targets = [
-      { el: document.querySelector(".talent-scene"), depth: 13, tilt: 5 },
+      { el: document.querySelector(".talent-scene"), depth: 13, tilt: 5, roll: 2.4 },
       { el: document.querySelector(".hero-visual .orbit-text"), depth: 7, tilt: 0 },
       { el: document.querySelector(".hero-visual .top-card"), depth: -20, tilt: 7 },
       { el: document.querySelector(".hero-visual .bottom-card"), depth: 24, tilt: -7 },
@@ -124,6 +154,7 @@
     state.track = document.querySelector("[data-storyline]");
     state.ring = state.track ? state.track.querySelector(".story-ring") : null;
     state.scenes = state.track ? [].slice.call(state.track.querySelectorAll(".story-scene")) : [];
+    state.panels = state.scenes.map(function (scene) { return scene.firstElementChild; });
     state.copy = state.track ? [].slice.call(state.track.querySelectorAll("[data-story-copy]")) : [];
     state.rail = state.track ? [].slice.call(state.track.querySelectorAll(".story-rail span")) : [];
 
