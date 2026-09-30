@@ -1,0 +1,5 @@
+# Stored applications, generated PDFs and credentials are runtime data.
+# They belong to the host's filesystem, not to version control.
+*
+!.gitignore
+!.htaccess
