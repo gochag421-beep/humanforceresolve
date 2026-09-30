@@ -67,3 +67,27 @@ Then drive it over CDP (Node's built-in `ws` + `fetch` against
   array in the bundle now holds only construction, manufacturing, general workers
   and hospitality. `οδηγοί` survives only inside `εργοδηγοί` (construction
   foremen), which is intentional.
+- The transport era also left a "Κατηγορία διπλώματος" dropdown in the candidate
+  application form; it has been removed. Neither form should ask about a driving
+  licence or a vehicle again.
+- The `truck` icon in the bundle is a Lucide definition with zero call sites —
+  dead code, not a feature.
+
+## Images
+
+- The optimised images sit at the repo root (`experts.webp`, `productivity.webp`)
+  next to their JPEG originals, *not* under `assets/`.
+- Both are wrapped in `<picture>` with the WebP `<source>` first and the JPEG
+  `<img>` as fallback, in `index.html` and in the bundle. Keep the two in sync.
+
+## The 3D storyline
+
+- `assets/hfs-3d.js` drives `assets/hfs-3d.css`. The storyline is continuous:
+  scroll sets a fractional base position and the pointer adds a rolling offset,
+  so the three scenes cross-fade and moving the mouse scrubs the storyline.
+  It writes `--active` on `.story-ring` and per-scene `opacity`/`visibility`.
+- It is progressive enhancement. Without JS, or with `prefers-reduced-motion`,
+  the scenes must fall back to stacked readable cards — the `html:not(.hfs-3d)`
+  and reduced-motion blocks in the CSS do that. Do not break those.
+- React may replace the prerendered markup, so the script re-queries its nodes
+  through a `MutationObserver`; keep that re-binding when editing it.

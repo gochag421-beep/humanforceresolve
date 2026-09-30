@@ -13,7 +13,7 @@
 
   var clamp = function (v, min, max) { return Math.min(max, Math.max(min, v)); };
 
-  var state = { targets: [], track: null, ring: null, scenes: [], panels: [], copy: [], rail: [], basePos: 0 };
+  var state = { targets: [], track: null, ring: null, scenes: [], copy: [], rail: [], basePos: 0 };
   var pointer = { x: 0, y: 0, cx: 0, cy: 0 };
   var pointerActive = false;
   var looping = false;
@@ -35,7 +35,7 @@
       var near = clamp(1 - distance, 0, 1);
       state.scenes[i].style.opacity = (near * near).toFixed(3);
       state.scenes[i].style.visibility = near > 0.03 ? "visible" : "hidden";
-      if (state.panels[i]) state.panels[i].style.display = near > 0.03 ? "flex" : "none";
+      state.scenes[i].classList.toggle("is-near", near > 0.03);
     }
   }
 
@@ -154,7 +154,6 @@
     state.track = document.querySelector("[data-storyline]");
     state.ring = state.track ? state.track.querySelector(".story-ring") : null;
     state.scenes = state.track ? [].slice.call(state.track.querySelectorAll(".story-scene")) : [];
-    state.panels = state.scenes.map(function (scene) { return scene.firstElementChild; });
     state.copy = state.track ? [].slice.call(state.track.querySelectorAll("[data-story-copy]")) : [];
     state.rail = state.track ? [].slice.call(state.track.querySelectorAll(".story-rail span")) : [];
 

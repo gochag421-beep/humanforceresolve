@@ -277,6 +277,9 @@
   overflow: hidden;
 }
 .story-ring .story-scene.is-active .story-panel { display: flex; }
+/* Continuous roll: a scene is shown whenever it is near the current
+   position, so neighbours cross-fade instead of snapping. */
+.story-ring .story-scene.is-near .story-panel { display: flex; }
 .story-panel::after {
   content: "✳";
   position: absolute;
